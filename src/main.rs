@@ -1,7 +1,10 @@
+mod debug;
 mod player;
 
 use crate::player::PlayerPlugin;
 use bevy::prelude::*;
+use bevy_egui::EguiPlugin;
+use crate::debug::DebugPlugin;
 
 fn main() {
     App::new()
@@ -13,7 +16,9 @@ fn main() {
                 }),
                 ..Default::default()
             }),
+            EguiPlugin,
             PlayerPlugin,
+            DebugPlugin
         ))
         .run();
 }
