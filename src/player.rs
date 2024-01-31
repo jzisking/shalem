@@ -8,7 +8,7 @@ pub struct PlayerPlugin;
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, startup);
-        app.add_systems(Update, movement);
+        app.add_systems(Update, (movement, camera_follow));
     }
 }
 
@@ -42,5 +42,17 @@ fn movement(
     }
     if keys.pressed(KeyCode::D) {
         transform.translation.x += SPEED * time.delta_seconds();
+    }
+}
+
+fn camera_follow(
+    query: Query<&Transform, With<PlayerComponent>>,
+    mut query_camera: Query<&mut Transform, (Without<PlayerComponent>, With<Camera>)>,
+) {
+    for player_transform in query.iter() {
+        for mut camera_transform in query_camera.iter_mut() {
+            camera_transform.translation.x = player_transform.translation.x;
+            camera_transform.translation.y = player_transform.translation.y;
+        }
     }
 }

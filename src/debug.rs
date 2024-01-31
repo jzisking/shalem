@@ -15,7 +15,8 @@ impl Plugin for DebugPlugin {
             enabled: true,
             #[cfg(not(debug_assertions))]
             enabled: false,
-        }).add_systems(Update, gui);
+        })
+        .add_systems(Update, gui);
     }
 }
 
