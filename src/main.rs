@@ -1,5 +1,6 @@
 mod bush;
 mod debug;
+mod inventory;
 mod player;
 
 use crate::bush::spawn_bush;
@@ -7,6 +8,7 @@ use crate::debug::DebugPlugin;
 use crate::player::PlayerPlugin;
 use bevy::prelude::*;
 use bevy_egui::EguiPlugin;
+use crate::inventory::InventoryPlugin;
 
 fn main() {
     App::new()
@@ -21,6 +23,7 @@ fn main() {
             EguiPlugin,
             PlayerPlugin,
             DebugPlugin,
+            InventoryPlugin
         ))
         .add_systems(Startup, startup)
         .run();
