@@ -19,38 +19,39 @@ fn startup(mut commands: Commands, asset_server: Res<AssetServer>) {
                 ..default()
             },
             ..default()
-        }).with_children(|parent| {
-        parent
-            .spawn(NodeBundle {
-                style: Style {
-                    width: Val::Px(700.0),
-                    height: Val::Px(100.0),
-                    justify_content: JustifyContent::Center,
-                    align_items: AlignItems::Center,
-                    margin: UiRect::new(Val::Auto, Val::Auto, Val::Auto, Val::Px(10.)),
+        })
+        .with_children(|parent| {
+            parent
+                .spawn(NodeBundle {
+                    style: Style {
+                        width: Val::Px(700.0),
+                        height: Val::Px(100.0),
+                        justify_content: JustifyContent::Center,
+                        align_items: AlignItems::Center,
+                        margin: UiRect::new(Val::Auto, Val::Auto, Val::Auto, Val::Px(10.)),
+                        ..default()
+                    },
                     ..default()
-                },
-                ..default()
-            })
-            .with_children(|parent| {
-                for i in 0..9 {
-                    parent.spawn((
-                        NodeBundle {
-                            style: Style {
-                                width: Val::Px(64.),
-                                height: Val::Px(64.),
-                                margin: UiRect::new(Val::Auto, Val::Auto, Val::Auto, Val::Auto),
-                                align_items: AlignItems::Center,
-                                justify_content: JustifyContent::Center,
+                })
+                .with_children(|parent| {
+                    for i in 0..9 {
+                        parent.spawn((
+                            NodeBundle {
+                                style: Style {
+                                    width: Val::Px(64.),
+                                    height: Val::Px(64.),
+                                    margin: UiRect::new(Val::Auto, Val::Auto, Val::Auto, Val::Auto),
+                                    align_items: AlignItems::Center,
+                                    justify_content: JustifyContent::Center,
+                                    ..default()
+                                },
+
+                                background_color: Color::WHITE.into(),
                                 ..default()
                             },
-
-                            background_color: Color::WHITE.into(),
-                            ..default()
-                        },
-                        UiImage::new(asset_server.load("slot.png")),
-                    ));
-                }
-            });
-    });
+                            UiImage::new(asset_server.load("slot.png")),
+                        ));
+                    }
+                });
+        });
 }
